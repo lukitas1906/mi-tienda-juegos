@@ -3,90 +3,198 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f0f0f0;
   color: #333;
   line-height: 1.6;
 }
+
 header {
   background-color: #1a1a1a;
   color: white;
   padding: 1rem 0;
 }
+
 nav {
   display: flex;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+
+  header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  #filtros {
+    padding: 1rem;
+    background-color: #fff;
+    margin: 20px 0;
+  }
+
+  #filtros label {
+    margin-right: 10px;
+  }
+
+  #filtros select {
+    padding: 5px;
+    margin-right: 20px;
+  }
+
+  #catálogo {
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .juego {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    width: calc(33% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .juego img {
+    width: 100%;
+    height: auto;
+  }
+
+  .juego h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
+  .juego .precio {
+    font-size: 1rem;
+    color: green;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
   justify-content: space-between;
   align-items: center;
   max-width: 1000px;
   margin: auto;
   padding: 0 1rem;
 }
+
 nav h1 {
   font-size: 1.8rem;
 }
+
 nav ul {
   list-style: none;
   display: flex;
   gap: 1rem;
 }
+
 nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
 }
+
 .hero {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('https://images.unsplash.com/photo-1580128633829-51fcfdfcf16b') center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://images.unsplash.com/photo-1580128633829-51fcfdfcf16b') center/cover;
   color: white;
   padding: 5rem 1rem;
   text-align: center;
 }
+
 .catalogo {
   padding: 2rem 1rem;
   max-width: 1000px;
   margin: auto;
 }
+
 .catalogo h2 {
   text-align: center;
   margin-bottom: 1.5rem;
 }
+
 .juegos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
+
 .juego {
   background: white;
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
 .juego img {
   width: 100%;
   border-radius: 6px;
 }
+
 .precio {
   color: #27ae60;
   font-weight: bold;
   margin-top: 0.5rem;
 }
+
 .ubicacion,
 .contacto {
   background: #fafafa;
   padding: 2rem 1rem;
   text-align: center;
 }
-.ubicacion h2, .contacto h2 {
+
+.ubicacion h2,
+.contacto h2 {
   margin-bottom: 1rem;
 }
+
 .redes a {
   margin: 0 1rem;
   text-decoration: none;
   color: #555;
   font-weight: bold;
 }
+
 footer {
   background-color: #1a1a1a;
   color: white;

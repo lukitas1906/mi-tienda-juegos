@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tienda de Juegos - GamerZone</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
   <header>
     <nav>
@@ -60,9 +62,8 @@
   <section id="ubicacion" class="ubicacion">
     <h2>¿Dónde Estamos?</h2>
     <p>📍 Av. Siempre Viva 123, Buenos Aires, Argentina</p>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12..."
-      width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12..." width="100%" height="250" style="border:0;"
+      allowfullscreen="" loading="lazy">
     </iframe>
   </section>
 
@@ -81,4 +82,113 @@
     <p>&copy; 2025 GamerZone. Todos los derechos reservados.</p>
   </footer>
 </body>
+
+</html>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Videojuegos</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+  <header>
+    <h1>Bienvenido a la Tienda de Videojuegos</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Catálogo</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="filtros">
+    <h2>Filtrar Juegos</h2>
+    <label for="plataforma">Plataforma:</label>
+    <select id="plataforma">
+      <option value="0">Todas</option>
+      <option value="1">PC</option>
+      <option value="2">PlayStation 5</option>
+      <option value="3">Xbox Series X</option>
+      <option value="4">Nintendo Switch</option>
+    </select>
+
+    <label for="genero">Género:</label>
+    <select id="genero">
+      <option value="0">Todos</option>
+      <option value="1">Acción</option>
+      <option value="2">Aventura</option>
+      <option value="3">Estrategia</option>
+      <option value="4">RPG</option>
+      <option value="5">Deportes</option>
+    </select>
+  </section>
+
+  <section id="catálogo">
+    <h2>Catálogo de Juegos</h2>
+    <div id="juegos-container"></div>
+  </section>
+
+  <footer>
+    <p>© 2025 Tienda de Videojuegos</p>
+  </footer>
+
+  <script>
+    // Función para cargar los juegos desde la API
+    function cargarJuegos(filtroPlataforma = 0, filtroGenero = 0) {
+      let url = 'http://localhost:3000/api/juegos';
+      if (filtroPlataforma > 0) {
+        url += `/plataforma/${filtroPlataforma}`;
+      }
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const juegosContainer = document.getElementById('juegos-container');
+          juegosContainer.innerHTML = ''; // Limpiar contenedor antes de cargar nuevos juegos
+
+          // Filtrar por género si se seleccionó
+          if (filtroGenero > 0) {
+            data = data.filter(juego => juego.generos.includes(filtroGenero));
+          }
+
+          data.forEach(juego => {
+            const juegoElement = document.createElement('article');
+            juegoElement.classList.add('juego');
+            juegoElement.innerHTML = `
+              <img src="${juego.imagen_url}" alt="${juego.titulo}">
+              <h3>${juego.titulo}</h3>
+              <p>${juego.descripcion}</p>
+              <p class="precio">$${juego.precio}</p>
+            `;
+            juegosContainer.appendChild(juegoElement);
+          });
+        })
+        .catch(error => {
+          console.error('Error al cargar los juegos:', error);
+        });
+    }
+
+    // Cargar juegos iniciales
+    cargarJuegos();
+
+    // Event listeners para los filtros
+    document.getElementById('plataforma').addEventListener('change', function () {
+      const plataformaSeleccionada = this.value;
+      const generoSeleccionado = document.getElementById('genero').value;
+      cargarJuegos(plataformaSeleccionada, generoSeleccionado);
+    });
+
+    document.getElementById('genero').addEventListener('change', function () {
+      const generoSeleccionado = this.value;
+      const plataformaSeleccionada = document.getElementById('plataforma').value;
+      cargarJuegos(plataformaSeleccionada, generoSeleccionado);
+    });
+  </script>
+</body>
+
 </html>
